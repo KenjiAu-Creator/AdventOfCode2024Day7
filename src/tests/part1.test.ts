@@ -42,7 +42,7 @@ describe('Calculate calibration example', () => {
         expect(parseCalibration("./src/tests/TestBlock.txt")).toBe(327);
     });
 
-    // test('First Input', () => {
-    //     expect(parseCalibration("./src/tests/Input.txt")).toBe(0);
-    // });
+    test('Part One Input', () => {
+        expect(parseCalibration("./src/tests/Input.txt")).toBe(21572148763543);
+    });
 });
