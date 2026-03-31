@@ -9,7 +9,7 @@ let rowAdded: Set<number> = new Set();
  * @param filePath
  * @returns
  */
-function parseCalibration(filePath: string = "./src/tests/adventDay7Test.txt"): number {
+function parseCalibration(filePath: string = "./src/tests/Test.txt"): number {
     let totalCalibration: number = 0;
     let planks: string = fs.readFileSync(filePath, "utf8");
 
@@ -20,20 +20,18 @@ function parseCalibration(filePath: string = "./src/tests/adventDay7Test.txt"): 
             let plank = plankArray[i];
             if (plank) {
                 const plankNumbers: string[] = plank.split(" ");
-                // console.log(plankNumbers);
                 const target = plankNumbers[0]?.slice(0, plankNumbers[0].length - 1);
                 const startingNumber = plankNumbers[1]
 
                 if (target && startingNumber) {
                     const targetNum: number = Number.parseInt(target);
-                    // console.log('target', targetNum);
 
+                    // We should potentially have an array here with the numbers in the calibration that we can use
+                    // We need an index pointer and potentially a current value
                     totalCalibration += depthFirstSearch(targetNum, plankNumbers.slice(2), parseInt(startingNumber), 0, i);
                 }
             }
 
-            // We should potentially have an array here with the numbers in the calibration that we can use
-            // We need an index pointer and potentially a current value
         }
     }
 
@@ -50,11 +48,6 @@ function parseCalibration(filePath: string = "./src/tests/adventDay7Test.txt"): 
  * @returns
  */
 function depthFirstSearch(target: number, originalCalibrations: string[], currentSum: number, calibrationIndex: number, rowIndex: number): number {
-    // console.log('currentSum:', currentSum);
-    // console.log('ci', calibrationIndex);
-    // console.log(originalCalibrations);
-    // console.log(target);
-    // console.log(originalCalibrations);
     // So check to see if currentSum is equal to target
     if (target === currentSum && !rowAdded.has(rowIndex)) {
         results.push(target);
@@ -63,8 +56,13 @@ function depthFirstSearch(target: number, originalCalibrations: string[], curren
         return target;
     }
 
-    if (calibrationIndex >= (originalCalibrations.length)) {
+    if (calibrationIndex > (originalCalibrations.length)) {
         // We know that we are at the last number in the array
+        return 0;
+    }
+
+    if (currentSum > target) {
+        // No longer go down this path if we exceed the target value
         return 0;
     }
 
@@ -86,7 +84,5 @@ function depthFirstSearch(target: number, originalCalibrations: string[], curren
     return path2;
 
 }
-
-// parseCalibration();
 
 export { parseCalibration, depthFirstSearch };
