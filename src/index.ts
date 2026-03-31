@@ -2,44 +2,49 @@
 
 import * as fs from 'node:fs';
 
-let results: number[] = [];
 /**
+ * This function will return total calibration result.
+ * This means it will return the summation of all rows if the LHS can equal the RHS by
+ * inserting a '+' or a '*' operator between the numbers.
  *
- * @param filePath
- * @returns
+ * @param filePath the file path to the data to be parsed to figure out the calibration data
+ *
+ * @returns {number} the result of adding the first number in every row that meets the calibration equation requirement
 */
 function parseCalibration(filePath: string = "./src/tests/Test.txt"): number {
-
     /**
+     * This function will use a DFS approach to recursively check every permutation of '+' or '*' between elements
+     * inside the equation. This function will return the target number if the equation is possible and will return 0 otherwise.
      *
-     * @param target
-     * @param originalCalibrations
-     * @param currentSum
-     * @param calibrationIndex
-     * @returns
+     *
+     * @param {number} target The first number in the equation that must be equal to the summation
+     * @param {string} originalCalibrations Original calibration numbers the reference the plank
+     * @param {number} currentSum
+     * @param {number} calibrationIndex
+     * @returns {number}
      */
     function depthFirstSearch(target: number, originalCalibrations: string[], currentSum: number, calibrationIndex: number, rowIndex: number): number {
         // So check to see if currentSum is equal to target
-        if (target === currentSum && !rowAdded.has(rowIndex)) {
-            results.push(target);
-            rowAdded.add(rowIndex);
-            // console.log('adding...', target);
-            return target;
-        }
-
-        if (calibrationIndex > (originalCalibrations.length)) {
+        if (rowAdded.has(rowIndex)) {
+            // Skip this path if we already included the value
+            return 0;
+        } else if (calibrationIndex > (originalCalibrations.length)) {
             // We know that we are at the last number in the array
             return 0;
-        }
-
-        if (currentSum > target) {
+        } else if (currentSum > target) {
             // No longer go down this path if we exceed the target value
             return 0;
         }
 
-        // if not then we should either add or multiply
+        if (target === currentSum) {
+            rowAdded.add(rowIndex);
+            return target;
+        }
+
+        // if we are below the target then we should either add or multiply
         const nextValue: string | undefined = originalCalibrations[calibrationIndex];
         let nValue: number = 0;
+
         if (nextValue) {
             nValue = parseInt(nextValue);
         }
@@ -65,7 +70,6 @@ function parseCalibration(filePath: string = "./src/tests/Test.txt"): number {
 
         for (let i = 0; i < plankArray.length; i++) {
             let plank = plankArray[i];
-            // console.log('parsing plank: ', plank)
             if (plank) {
                 const plankNumbers: string[] = plank.split(" ");
                 const target = plankNumbers[0]?.slice(0, plankNumbers[0].length - 1);
@@ -74,8 +78,6 @@ function parseCalibration(filePath: string = "./src/tests/Test.txt"): number {
                 if (target && startingNumber) {
                     const targetNum: number = Number.parseInt(target);
 
-                    // We should potentially have an array here with the numbers in the calibration that we can use
-                    // We need an index pointer and potentially a current value
                     totalCalibration += depthFirstSearch(targetNum, plankNumbers.slice(2), parseInt(startingNumber), 0, i);
                 }
             }
@@ -83,8 +85,6 @@ function parseCalibration(filePath: string = "./src/tests/Test.txt"): number {
         }
     }
 
-    // console.log(results);
-    // console.log(totalCalibration);
     return totalCalibration;
 }
 
