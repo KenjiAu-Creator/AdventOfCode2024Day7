@@ -63,7 +63,6 @@ function parseCalibration(filePath: string, concat: boolean = false): number {
         return 0;
     }
 
-
     /**
      * This function will take in an array of numbers and return 2D array of expressions where each permutation of
      * '+', '*', or '|' is in place between each number.
@@ -170,7 +169,7 @@ function parseCalibration(filePath: string, concat: boolean = false): number {
                     const targetNum: number = Number.parseInt(target);
 
                     if (concat) {
-                        const perms = generatePermutations(targetNum, plankNumbers.slice(1));
+                        const perms = generatePermutations(plankNumbers.slice(1));
                         for (const perm of perms) {
                             if (evaluateCalibration(targetNum, perm)) {
                                 totalCalibration += targetNum;

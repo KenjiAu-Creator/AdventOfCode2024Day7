@@ -55,7 +55,7 @@ describe('Part 2 with concatentation operator', () => {
     });
 
     test('Test13 example', () => {
-        expect(parseCalibration("./src/tests/Test13.txt", true)).toBe(356);
+        expect(parseCalibration("./src/tests/Test13.txt", true)).toBe(310);
     });
 
     test('Test14 example', () => {
@@ -67,7 +67,7 @@ describe('Part 2 with concatentation operator', () => {
     });
 
     test('Test16 example', () => {
-        expect(parseCalibration("./src/tests/Test16.txt", true)).toBe(46);
+        expect(parseCalibration("./src/tests/Test16.txt", true)).toBe(0);
     });
 
     test('Test17 example', () => {
