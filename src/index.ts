@@ -94,6 +94,16 @@ function parseCalibration(filePath: string, concat: boolean = false): number {
         return resultSet;
     }
 
+    /**
+     * This function will evaluate an express from left to right.
+     * Currently it will only evaluate '+', '*', and '||' operations
+     * It will return true if the expression is equal to the target parameter supplied.
+     * It will NOT take into account precedence as stated in the problem definition.
+     *
+     * @param target        Target value to check for at the end of the expression
+     * @param equation      An array of strings containing both the numbers and operators to evaluate
+     * @returns {boolean}   Returns true if the equation equals the target parameter and false otherwise
+     */
     function evaluateCalibration(target: number, equation: string[]): boolean {
         let opStack: string[] = [];
         let numStack: number[] = [];
