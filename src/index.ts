@@ -63,7 +63,15 @@ function parseCalibration(filePath: string, concat: boolean = false): number {
         return 0;
     }
 
-    function generatePermutations(target: number, nums: string[]): string[][] {
+
+    /**
+     * This function will take in an array of numbers and return 2D array of expressions where each permutation of
+     * '+', '*', or '|' is in place between each number.
+     *
+     * @param {string[]} nums   Array of numbers the expression will contain
+     * @returns {string[][]}    Returns a 2D array of all permutations of possible expressions
+     */
+    function generatePermutations(nums: string[]): string[][] {
         const ops = ["+", "*", "||"];
         let resultSet: string[][] = [];
 
