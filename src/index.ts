@@ -97,7 +97,7 @@ function parseCalibration(filePath: string, concat: boolean = false): number {
     function evaluateCalibration(target: number, equation: string[]): boolean {
         let opStack: string[] = [];
         let numStack: number[] = [];
-        let cEq = [...equation];
+
         // reverse the array for easy of manipulation first
         while (equation.length) {
             let tail: string | undefined = equation.pop();
@@ -108,7 +108,7 @@ function parseCalibration(filePath: string, concat: boolean = false): number {
                 opStack.push(tail);
             }
         }
-        // console.log('nStack:', numStack)
+
         const firstNum: number | undefined = numStack.pop();
         let sum: number = firstNum ? firstNum : 0;
 
@@ -117,9 +117,7 @@ function parseCalibration(filePath: string, concat: boolean = false): number {
 
             let nextVal: number | undefined = numStack.pop();
 
-            // console.log(nextVal);
             if (typeof nextVal === "number") {
-                // console.log('n', nextVal);
                 if (op === "+") {
                     sum += nextVal;
                 } else if (op === "*") {
@@ -127,12 +125,13 @@ function parseCalibration(filePath: string, concat: boolean = false): number {
                 } else if (op === "||") {
                     sum = Number.parseInt(`${sum}${nextVal}`);
                 }
+
+                if (sum > target) return false;
             } else {
                 break;
             }
         }
 
-        // console.log(`${cEq}:${sum}`);
         return sum === target ? true : false;
     }
 
@@ -153,14 +152,6 @@ function parseCalibration(filePath: string, concat: boolean = false): number {
                     const targetNum: number = Number.parseInt(target);
 
                     if (concat) {
-                        // totalCalibration += concatDfs(
-                        //     targetNum,                  // Target
-                        //     plankNumbers,
-                        //     0,                          // Initial sum
-                        //     1,                          // The next element in the array we considering
-                        //     i,                          // plank index or row index
-                        // );
-
                         const perms = generatePermutations(targetNum, plankNumbers.slice(1));
                         for (const perm of perms) {
                             if (evaluateCalibration(targetNum, perm)) {
