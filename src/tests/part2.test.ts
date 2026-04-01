@@ -54,13 +54,35 @@ describe('Part 2 with concatentation operator', () => {
         expect(parseCalibration("./src/tests/Test12.txt", true)).toBe(10010);
     });
 
+    test('Test13 example', () => {
+        expect(parseCalibration("./src/tests/Test13.txt", true)).toBe(356);
+    });
+
+    test('Test14 example', () => {
+        expect(parseCalibration("./src/tests/Test14.txt", true)).toBe(2246);
+    });
+
+    test('Test15 example', () => {
+        expect(parseCalibration("./src/tests/Test15.txt", true)).toBe(332);
+    });
+
+    test('Test16 example', () => {
+        expect(parseCalibration("./src/tests/Test16.txt", true)).toBe(46);
+    });
+
+    test('Test17 example', () => {
+        expect(parseCalibration("./src/tests/Test17.txt", true)).toBe(7290);
+    });
+
+    test('Test18 example', () => {
+        expect(parseCalibration("./src/tests/Test18.txt", true)).toBe(154);
+    });
+
     test('TestBlock example', () => {
         expect(parseCalibration("./src/tests/TestBlock.txt", true)).toBe(1964);
     });
 
     test('Part Two Input', () => {
-        // 581944351247986
-        // This value is too high
-        expect(parseCalibration("./src/tests/Input.txt", true)).toBe(0);
+        expect(parseCalibration("./src/tests/Input.txt", true)).toBe(581941094529163);
     });
 });
