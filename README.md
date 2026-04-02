@@ -20,6 +20,7 @@ For example:
     - generatePermutations()
     - evaluateCalibration()
 - I think the backtracking approach used in Part 1 could still work but found that brute force was simplier and still works within the constraints provided by the input file.
+- Backtracking solution had difficulty exploring || operator for numbers past but I think it could still work.
 
 ## Complexity
 ### Part 1
