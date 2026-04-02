@@ -22,10 +22,10 @@ function parseCalibration(filePath: string, concat: boolean = false): number {
      * @param {string} nums                 The numbers in the array with the reference to the current plank
      * @param {number} currentSum           The current sum value so far up to the calibrationIndex in nums array
      * @param {number} index                The index indicating which plank is being calibrated. (Row in the txt file)
-     * @param {boolean} concat              Flag for whether to include the concatenation operator
-     * @returns {number}
+     *
+     * @returns {number}                    Returns target value if the equation is true and 0 otherwise
      */
-    function addOrMultiplyDfs(target: number, nums: string[], currentSum: number, index: number, plankIndex: number, concat: boolean = false): number {
+    function addOrMultiplyDfs(target: number, nums: string[], currentSum: number, index: number, plankIndex: number): number {
         if (target === currentSum && !rowAdded.has(plankIndex)) {
             rowAdded.add(plankIndex);
             return target;
@@ -68,6 +68,7 @@ function parseCalibration(filePath: string, concat: boolean = false): number {
      * '+', '*', or '|' is in place between each number.
      *
      * @param {string[]} nums   Array of numbers the expression will contain
+     *
      * @returns {string[][]}    Returns a 2D array of all permutations of possible expressions
      */
     function generatePermutations(nums: string[]): string[][] {
@@ -109,6 +110,7 @@ function parseCalibration(filePath: string, concat: boolean = false): number {
      *
      * @param target        Target value to check for at the end of the expression
      * @param equation      An array of strings containing both the numbers and operators to evaluate
+     *
      * @returns {boolean}   Returns true if the equation equals the target parameter and false otherwise
      */
     function evaluateCalibration(target: number, equation: string[]): boolean {
@@ -143,7 +145,10 @@ function parseCalibration(filePath: string, concat: boolean = false): number {
                     sum = Number.parseInt(`${sum}${nextVal}`);
                 }
 
-                if (sum > target) return false;
+                if (sum > target) {
+                    // Prune this path if we are above the target
+                    return false;
+                }
             } else {
                 break;
             }
@@ -184,7 +189,6 @@ function parseCalibration(filePath: string, concat: boolean = false): number {
                             0,                          // Initial sum
                             1,                          // The next element in the array we considering
                             i,                          // plank index or row index
-                            concat,                     // Concat flag
                         );
                     }
                 }
