@@ -60,7 +60,7 @@ describe('Part 1 Calibration testing', () => {
         expect(parseCalibration("./src/tests/Test5.txt", false)).toBe(100);
     });
 
-    test('One equation fail', () => {
+    test('Impossible equation', () => {
         /**
          * 50: 10 10 10
          */
