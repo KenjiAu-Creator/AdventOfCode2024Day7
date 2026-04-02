@@ -28,7 +28,6 @@ For example:
 
 ### Part 2
 - Time complexity: **O(n x (3 ^ m))** where n is the number of planks (equations) and m is the number of operations in the equation.
--
 
 ## Lessons learned
 - Breaking down the solution into reusable functions improves readability
@@ -38,3 +37,11 @@ For example:
 
 ## Problem Link
 The core problem and information can be found at: https://adventofcode.com/2024/day/7
+
+## Installation
+To run this repo simply clone it down to your machine.
+Then run:
+`npm install`
+
+Next to initiate the testing run:
+`npm test`
