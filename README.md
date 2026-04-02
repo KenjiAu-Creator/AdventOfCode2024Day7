@@ -9,6 +9,7 @@ A plank on the rope bridge requires calibration. A plank is calibrated correctly
 ## Design Decisions
 - Initial thoughts are that since we have two operators at every step ( + or * ) this leads backtracking type of solution and we are looking at every permutation so a DFS or BFS approach may be optimal.
 - Using a testing library like jest will help speed up testing different scenarios quickly.
+- Initially used a backtracking + DFS helper function for part 1 but removed the function to improve code readability.
 
 # Part 2
 A third type of operator is added: the concatenation ( || ).
