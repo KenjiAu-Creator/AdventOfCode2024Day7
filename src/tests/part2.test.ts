@@ -78,8 +78,8 @@ describe('Part 2 with concatentation operator', () => {
         expect(parseCalibration("./src/tests/Test18.txt", true)).toBe(154);
     });
 
-    test('TestBlock example', () => {
-        expect(parseCalibration("./src/tests/TestBlock.txt", true)).toBe(1964);
+    test('Test19 example', () => {
+        expect(parseCalibration("./src/tests/Test19.txt", true)).toBe(1964);
     });
 
     test('Part Two Input', () => {

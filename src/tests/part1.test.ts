@@ -38,8 +38,8 @@ describe('Calculate calibration example', () => {
         expect(parseCalibration("./src/tests/Test8.txt", false)).toBe(0);
     });
 
-    test('TestBlock example', () => {
-        expect(parseCalibration("./src/tests/TestBlock.txt", false)).toBe(327);
+    test('Test19 example', () => {
+        expect(parseCalibration("./src/tests/Test19.txt", false)).toBe(327);
     });
 
     test('Part One Input', () => {
