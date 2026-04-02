@@ -1,44 +1,87 @@
 import { describe, expect, test } from '@jest/globals';
 import { parseCalibration } from '../index.ts';
 
-describe('Calculate calibration example', () => {
-    test('Test example', () => {
+describe('Part 1 Calibration testing', () => {
+    test('Base example provided', () => {
         expect(parseCalibration("./src/tests/Test.txt", false)).toBe(3749);
     });
 
-    test('Test1 example', () => {
+    test('Triple equation works', () => {
+        /**
+         * 10: 5 5 (WORK)
+         * 15: 3 5 (WORK)
+         * 20: 4 5 (WORK)
+         */
         expect(parseCalibration("./src/tests/Test1.txt", false)).toBe(45);
     });
 
-    test('Test2 example', () => {
+    test('Only one equation', () => {
+        /**
+         * 12: 2 3 2 (WORK)
+         * 14: 2 3 4
+         */
         expect(parseCalibration("./src/tests/Test2.txt", false)).toBe(12);
     });
 
-    test('Test3 example', () => {
+    test('No equations work', () => {
+        /**
+         * 123: 12 3
+         * 156: 15 6
+         * 729: 7 2 9
+         */
         expect(parseCalibration("./src/tests/Test3.txt", false)).toBe(0);
     });
 
-    test('Test4 example', () => {
+    test('Two equations', () => {
+        /**
+         * 190: 10 19       (WORK)
+         * 3267: 81 40 27   (WORK)
+         * 83: 17 5
+         */
         expect(parseCalibration("./src/tests/Test4.txt", false)).toBe(3457);
     });
 
-    test('Test5 example', () => {
+    test('Two operations & one equation works', () => {
+        /**
+         * 100: 2 5 10
+         * 250: 2 5 10
+         */
         expect(parseCalibration("./src/tests/Test5.txt", false)).toBe(100);
     });
 
-    test('Test6 example', () => {
+    test('One equation fail', () => {
+        /**
+         * 50: 10 10 10
+         */
         expect(parseCalibration("./src/tests/Test6.txt", false)).toBe(0);
     });
 
-    test('Test7 example', () => {
+    test('One equation multiply', () => {
+        /**
+         * 1212: 12 12
+         * 144: 12 12
+         */
         expect(parseCalibration("./src/tests/Test7.txt", false)).toBe(144);
     });
 
-    test('Test8 example', () => {
+    test('302: 3 0 2', () => {
+        /**
+         * 302: 3 0 2
+         */
         expect(parseCalibration("./src/tests/Test8.txt", false)).toBe(0);
     });
 
-    test('Test19 example', () => {
+    test('Combined test cases', () => {
+        /**
+         * 10: 5 5
+         * 15: 3 5
+         * 12: 2 3 2
+         * 123: 12 3
+         * 190: 10 19
+         * 100: 2 5 10
+         * 1212: 12 12
+         * 302: 3 0 2
+         */
         expect(parseCalibration("./src/tests/Test19.txt", false)).toBe(327);
     });
 
