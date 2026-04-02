@@ -40,6 +40,7 @@ The core problem and information can be found at: https://adventofcode.com/2024/
 
 ## Installation
 To run this repo simply clone it down to your machine.
+
 Then run:
 `npm install`
 
